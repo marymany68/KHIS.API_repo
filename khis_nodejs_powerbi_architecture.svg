@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <title>KHIS to Power BI Data Pipeline Architecture</title>
+  <desc>Data flows from KHIS through VS Code and Node.js ETL into PostgreSQL, then Power BI reads from the database to build dashboards</desc>
+
+  <!-- Background -->
+  <rect width="900" height="640" fill="#0f1117" rx="16"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="18" font-weight="600" fill="#e8eaff">KHIS → Node.js → PostgreSQL → Power BI</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" fill="#6b7280">Maternal &amp; Perinatal Mortality Dashboard · Kenya</text>
+
+  <!-- Dividers -->
+  <line x1="60" y1="195" x2="840" y2="195" stroke="#2d3250" stroke-width="1" stroke-dasharray="5 4"/>
+  <line x1="60" y1="405" x2="840" y2="405" stroke="#2d3250" stroke-width="1" stroke-dasharray="5 4"/>
+  <line x1="60" y1="510" x2="840" y2="510" stroke="#2d3250" stroke-width="1" stroke-dasharray="5 4"/>
+
+  <!-- Layer labels -->
+  <text x="28" y="140" text-anchor="middle" font-size="11" fill="#4b5563" transform="rotate(-90,28,140)">Source</text>
+  <text x="28" y="305" text-anchor="middle" font-size="11" fill="#4b5563" transform="rotate(-90,28,305)">ETL pipeline</text>
+  <text x="28" y="460" text-anchor="middle" font-size="11" fill="#4b5563" transform="rotate(-90,28,460)">Storage</text>
+  <text x="28" y="548" text-anchor="middle" font-size="11" fill="#4b5563" transform="rotate(-90,28,548)">Presentation</text>
+
+  <!-- ======== SOURCE LAYER ======== -->
+  <!-- KHIS box -->
+  <rect x="70" y="75" width="180" height="100" rx="10" fill="#2d1f14" stroke="#993C1D" stroke-width="1"/>
+  <text x="160" y="110" text-anchor="middle" font-size="15" font-weight="600" fill="#f0997b">KHIS</text>
+  <text x="160" y="130" text-anchor="middle" font-size="11" fill="#c97c5a">Kenya Health Info System</text>
+  <text x="160" y="148" text-anchor="middle" font-size="11" fill="#c97c5a">Maternal · Perinatal data</text>
+  <text x="160" y="165" text-anchor="middle" font-size="10" fill="#8b4c35">MOH 711 Rev 2020</text>
+
+  <!-- DHIS2 API box -->
+  <rect x="310" y="90" width="170" height="60" rx="10" fill="#1e2030" stroke="#444861" stroke-width="1"/>
+  <text x="395" y="115" text-anchor="middle" font-size="14" font-weight="600" fill="#b0b8d8">DHIS2 API</text>
+  <text x="395" y="135" text-anchor="middle" font-size="11" fill="#6b7280">REST · JSON export</text>
+
+  <!-- Arrow KHIS → DHIS2 -->
+  <line x1="250" y1="125" x2="308" y2="120" stroke="#993C1D" stroke-width="1.5" marker-end="url(#arrowCoral)"/>
+
+  <!-- ======== ETL LAYER ======== -->
+  <!-- VS Code box -->
+  <rect x="70" y="215" width="160" height="70" rx="10" fill="#1e1a2e" stroke="#534AB7" stroke-width="1"/>
+  <text x="150" y="245" text-anchor="middle" font-size="14" font-weight="600" fill="#afa9ec">VS Code</text>
+  <text x="150" y="264" text-anchor="middle" font-size="11" fill="#7b72c4">Development IDE</text>
+
+  <!-- Node.js ETL box -->
+  <rect x="295" y="208" width="220" height="100" rx="10" fill="#0f2e28" stroke="#0F6E56" stroke-width="1.5"/>
+  <text x="405" y="238" text-anchor="middle" font-size="14" font-weight="600" fill="#5DCAA5">Node.js ETL script</text>
+  <text x="405" y="258" text-anchor="middle" font-size="11" fill="#3a9e7f">Fetch · transform · clean</text>
+  <text x="405" y="276" text-anchor="middle" font-size="11" fill="#3a9e7f">Validate · load to database</text>
+  <text x="405" y="296" text-anchor="middle" font-size="10" fill="#2d7a61">axios · pg · dotenv</text>
+
+  <!-- Scheduler box -->
+  <rect x="580" y="215" width="170" height="70" rx="10" fill="#1e2030" stroke="#444861" stroke-width="1"/>
+  <text x="665" y="245" text-anchor="middle" font-size="14" font-weight="600" fill="#b0b8d8">Scheduler</text>
+  <text x="665" y="264" text-anchor="middle" font-size="11" fill="#6b7280">node-cron · auto-pull</text>
+
+  <!-- Error log box -->
+  <rect x="580" y="310" width="170" height="60" rx="10" fill="#2a1f00" stroke="#854F0B" stroke-width="1"/>
+  <text x="665" y="335" text-anchor="middle" font-size="14" font-weight="600" fill="#EF9F27">Error logs</text>
+  <text x="665" y="354" text-anchor="middle" font-size="11" fill="#ba7517">Failed fetches · alerts</text>
+
+  <!-- Node.js runtime border -->
+  <rect x="280" y="198" width="465" height="186" rx="14" fill="none" stroke="#0F6E56" stroke-width="0.8" stroke-dasharray="6 3"/>
+  <text x="756" y="220" font-size="10" fill="#0F6E56">Node.js</text>
+  <text x="756" y="234" font-size="10" fill="#0F6E56">runtime</text>
+
+  <!-- Arrows: DHIS2 → Node.js -->
+  <line x1="395" y1="150" x2="395" y2="206" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+
+  <!-- VS Code → Node.js (writes) -->
+  <line x1="230" y1="250" x2="293" y2="250" stroke="#534AB7" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrowPurple)"/>
+  <text x="262" y="243" text-anchor="middle" font-size="10" fill="#7b72c4">writes</text>
+
+  <!-- Node.js → Scheduler -->
+  <line x1="515" y1="250" x2="578" y2="250" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrowGray)"/>
+  <text x="547" y="243" text-anchor="middle" font-size="10" fill="#6b7280">triggers</text>
+
+  <!-- Scheduler → Error log -->
+  <line x1="665" y1="285" x2="665" y2="308" stroke="#854F0B" stroke-width="1.2" marker-end="url(#arrowAmber)"/>
+
+  <!-- Node.js → PostgreSQL -->
+  <line x1="405" y1="308" x2="405" y2="418" stroke="#1D9E75" stroke-width="2" marker-end="url(#arrowTeal)"/>
+  <text x="425" y="365" font-size="11" fill="#1D9E75">INSERT / UPSERT</text>
+
+  <!-- ======== STORAGE LAYER ======== -->
+  <rect x="180" y="420" width="380" height="76" rx="10" fill="#0c1a36" stroke="#185FA5" stroke-width="1.5"/>
+  <text x="370" y="448" text-anchor="middle" font-size="15" font-weight="600" fill="#85B7EB">PostgreSQL database</text>
+  <text x="370" y="467" text-anchor="middle" font-size="11" fill="#4a7fc2">public_mortality_records</text>
+  <text x="370" y="484" text-anchor="middle" font-size="10" fill="#375d8c">county · indicator · deaths · period · org_unit · id</text>
+
+  <!-- PostgreSQL → Power BI -->
+  <line x1="370" y1="496" x2="370" y2="520" stroke="#185FA5" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="390" y="512" font-size="11" fill="#4a7fc2">DirectQuery / Import</text>
+
+  <!-- ======== PRESENTATION LAYER ======== -->
+  <rect x="120" y="522" width="500" height="80" rx="10" fill="#1e1a2e" stroke="#534AB7" stroke-width="1.5"/>
+  <text x="370" y="550" text-anchor="middle" font-size="15" font-weight="600" fill="#afa9ec">Power BI dashboard</text>
+  <text x="370" y="569" text-anchor="middle" font-size="11" fill="#7b72c4">Cards · bar charts · donut · trend line</text>
+  <text x="370" y="586" text-anchor="middle" font-size="10" fill="#5a5090">County filter · Period slicer · Maternal &amp; Perinatal KPIs</text>
+
+  <!-- Footer -->
+  <text x="450" y="624" text-anchor="middle" font-size="10" fill="#374151">DHA Kenya · Maternal &amp; Perinatal Mortality Surveillance · 2026</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowCoral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#993C1D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#534AB7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#854F0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+</svg>
